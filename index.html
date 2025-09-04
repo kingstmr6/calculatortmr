@@ -1,0 +1,355 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scientific Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+  <style>
+    /* To prevent text selection on buttons */
+    button {
+      user-select: none;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+  <div class="bg-white rounded-lg shadow-lg w-full max-w-md">
+    <div class="p-4 border-b border-gray-300">
+      <input
+        id="display"
+        type="text"
+        readonly
+        class="w-full text-right text-3xl font-mono p-3 rounded bg-gray-100 border border-gray-300 focus:outline-none"
+        aria-label="Calculator display"
+      />
+    </div>
+    <div class="grid grid-cols-5 gap-2 p-4">
+      <!-- Row 1 -->
+      <button
+        class="btn-function text-blue-600 font-semibold py-3 rounded hover:bg-blue-100"
+        data-action="clear"
+        aria-label="Clear"
+      >
+        C
+      </button>
+      <button
+        class="btn-function text-blue-600 font-semibold py-3 rounded hover:bg-blue-100"
+        data-action="backspace"
+        aria-label="Backspace"
+      >
+        <i class="fas fa-backspace"></i>
+      </button>
+      <button
+        class="btn-function text-blue-600 font-semibold py-3 rounded hover:bg-blue-100"
+        data-value="("
+        aria-label="Open parenthesis"
+      >
+        (
+      </button>
+      <button
+        class="btn-function text-blue-600 font-semibold py-3 rounded hover:bg-blue-100"
+        data-value=")"
+        aria-label="Close parenthesis"
+      >
+        )
+      </button>
+      <button
+        class="btn-operator text-orange-600 font-semibold py-3 rounded hover:bg-orange-100"
+        data-value="/"
+        aria-label="Divide"
+      >
+        &divide;
+      </button>
+
+      <!-- Row 2 -->
+      <button
+        class="btn-function text-blue-600 font-semibold py-3 rounded hover:bg-blue-100"
+        data-value="sin("
+        aria-label="Sine function"
+      >
+        sin
+      </button>
+      <button
+        class="btn-function text-blue-600 font-semibold py-3 rounded hover:bg-blue-100"
+        data-value="cos("
+        aria-label="Cosine function"
+      >
+        cos
+      </button>
+      <button
+        class="btn-function text-blue-600 font-semibold py-3 rounded hover:bg-blue-100"
+        data-value="tan("
+        aria-label="Tangent function"
+      >
+        tan
+      </button>
+      <button
+        class="btn-function text-blue-600 font-semibold py-3 rounded hover:bg-blue-100"
+        data-value="log("
+        aria-label="Logarithm base 10"
+      >
+        log
+      </button>
+      <button
+        class="btn-operator text-orange-600 font-semibold py-3 rounded hover:bg-orange-100"
+        data-value="*"
+        aria-label="Multiply"
+      >
+        &times;
+      </button>
+
+      <!-- Row 3 -->
+      <button
+        class="btn-number py-3 rounded hover:bg-gray-200"
+        data-value="7"
+        aria-label="Number 7"
+      >
+        7
+      </button>
+      <button
+        class="btn-number py-3 rounded hover:bg-gray-200"
+        data-value="8"
+        aria-label="Number 8"
+      >
+        8
+      </button>
+      <button
+        class="btn-number py-3 rounded hover:bg-gray-200"
+        data-value="9"
+        aria-label="Number 9"
+      >
+        9
+      </button>
+      <button
+        class="btn-function text-blue-600 font-semibold py-3 rounded hover:bg-blue-100"
+        data-value="sqrt("
+        aria-label="Square root"
+      >
+        √
+      </button>
+      <button
+        class="btn-operator text-orange-600 font-semibold py-3 rounded hover:bg-orange-100"
+        data-value="-"
+        aria-label="Subtract"
+      >
+        &minus;
+      </button>
+
+      <!-- Row 4 -->
+      <button
+        class="btn-number py-3 rounded hover:bg-gray-200"
+        data-value="4"
+        aria-label="Number 4"
+      >
+        4
+      </button>
+      <button
+        class="btn-number py-3 rounded hover:bg-gray-200"
+        data-value="5"
+        aria-label="Number 5"
+      >
+        5
+      </button>
+      <button
+        class="btn-number py-3 rounded hover:bg-gray-200"
+        data-value="6"
+        aria-label="Number 6"
+      >
+        6
+      </button>
+      <button
+        class="btn-function text-blue-600 font-semibold py-3 rounded hover:bg-blue-100"
+        data-value="^"
+        aria-label="Exponentiation"
+      >
+        ^
+      </button>
+      <button
+        class="btn-operator text-orange-600 font-semibold py-3 rounded hover:bg-orange-100"
+        data-value="+"
+        aria-label="Add"
+      >
+        +
+      </button>
+
+      <!-- Row 5 -->
+      <button
+        class="btn-number py-3 rounded hover:bg-gray-200"
+        data-value="1"
+        aria-label="Number 1"
+      >
+        1
+      </button>
+      <button
+        class="btn-number py-3 rounded hover:bg-gray-200"
+        data-value="2"
+        aria-label="Number 2"
+      >
+        2
+      </button>
+      <button
+        class="btn-number py-3 rounded hover:bg-gray-200"
+        data-value="3"
+        aria-label="Number 3"
+      >
+        3
+      </button>
+      <button
+        class="btn-function text-blue-600 font-semibold py-3 rounded hover:bg-blue-100"
+        data-value="pi"
+        aria-label="Pi constant"
+      >
+        π
+      </button>
+      <button
+        class="btn-equal bg-green-600 text-white font-semibold py-3 rounded hover:bg-green-700"
+        aria-label="Equals"
+      >
+        =
+      </button>
+
+      <!-- Row 6 -->
+      <button
+        class="btn-number py-3 rounded hover:bg-gray-200 col-span-2"
+        data-value="0"
+        aria-label="Number 0"
+      >
+        0
+      </button>
+      <button
+        class="btn-number py-3 rounded hover:bg-gray-200"
+        data-value="."
+        aria-label="Decimal point"
+      >
+        .
+      </button>
+      <button
+        class="btn-function text-blue-600 font-semibold py-3 rounded hover:bg-blue-100"
+        data-value="e"
+        aria-label="Euler's number"
+      >
+        e
+      </button>
+      <button
+        class="btn-function text-blue-600 font-semibold py-3 rounded hover:bg-blue-100"
+        data-value="abs("
+        aria-label="Absolute value"
+      >
+        abs
+      </button>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const display = document.getElementById("display");
+
+      // Map for constants
+      const constants = {
+        pi: Math.PI,
+        e: Math.E,
+      };
+
+      // Replace ^ with ** for exponentiation
+      // Replace sqrt(x) with Math.sqrt(x)
+      // Replace sin(x), cos(x), tan(x), log(x), abs(x) with Math.sin, etc.
+      // Also handle degrees to radians conversion for trig functions (assume input in degrees)
+
+      // We'll parse the expression and replace functions with JS Math equivalents
+      // For trig functions, convert degrees to radians before calling Math.sin etc.
+
+      function preprocessExpression(expr) {
+        // Replace constants
+        expr = expr.replace(/\bpi\b/g, constants.pi);
+        expr = expr.replace(/\be\b/g, constants.e);
+
+        // Replace ^ with **
+        expr = expr.replace(/\^/g, "**");
+
+        // Replace sqrt( with Math.sqrt(
+        expr = expr.replace(/sqrt\(/g, "Math.sqrt(");
+
+        // Replace abs( with Math.abs(
+        expr = expr.replace(/abs\(/g, "Math.abs(");
+
+        // Replace log( with Math.log10(
+        expr = expr.replace(/log\(/g, "Math.log10(");
+
+        // Replace sin(, cos(, tan( with custom functions that convert degrees to radians
+        expr = expr.replace(/sin\(/g, "sinDeg(");
+        expr = expr.replace(/cos\(/g, "cosDeg(");
+        expr = expr.replace(/tan\(/g, "tanDeg(");
+
+        return expr;
+      }
+
+      // Functions to convert degrees to radians and then call Math trig functions
+      function sinDeg(x) {
+        return Math.sin((x * Math.PI) / 180);
+      }
+      function cosDeg(x) {
+        return Math.cos((x * Math.PI) / 180);
+      }
+      function tanDeg(x) {
+        return Math.tan((x * Math.PI) / 180);
+      }
+
+      // Attach these functions to window so eval can access them
+      window.sinDeg = sinDeg;
+      window.cosDeg = cosDeg;
+      window.tanDeg = tanDeg;
+
+      // Also Math.log10 polyfill if not present
+      if (!Math.log10) {
+        Math.log10 = function (x) {
+          return Math.log(x) / Math.LN10;
+        };
+      }
+
+      // Button click handler
+      function onButtonClick(e) {
+        const target = e.target.closest("button");
+        if (!target) return;
+
+        if (target.dataset.action === "clear") {
+          display.value = "";
+          return;
+        }
+
+        if (target.dataset.action === "backspace") {
+          display.value = display.value.slice(0, -1);
+          return;
+        }
+
+        if (target.classList.contains("btn-equal")) {
+          try {
+            let expr = display.value;
+            expr = preprocessExpression(expr);
+            // Evaluate expression safely
+            // eslint-disable-next-line no-eval
+            let result = eval(expr);
+            if (typeof result === "number" && !isNaN(result) && isFinite(result)) {
+              display.value = result;
+            } else {
+              display.value = "Error";
+            }
+          } catch {
+            display.value = "Error";
+          }
+          return;
+        }
+
+        // For other buttons, append their data-value to display
+        if (target.dataset.value) {
+          display.value += target.dataset.value;
+        }
+      }
+
+      document.querySelector("div.grid").addEventListener("click", onButtonClick);
+    })();
+  </script>
+</body>
+</html>
